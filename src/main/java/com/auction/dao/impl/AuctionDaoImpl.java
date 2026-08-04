@@ -9,6 +9,7 @@ import com.auction.dao.AuctionDao;
 import com.auction.model.Flipper;
 import com.auction.model.NameSuper;
 import com.auction.model.Player;
+import com.auction.model.Split;
 import com.auction.model.Squad;
 import com.auction.model.Statistics;
 import com.auction.model.StatsType;
@@ -108,6 +109,11 @@ public class AuctionDaoImpl implements AuctionDao {
         return sessionFactory.getCurrentSession()
                 .createQuery("from NameSuper", NameSuper.class)
                 .getResultList();
+    }
+    
+    @Override
+    public List<Split> getsSplits() {
+    	return sessionFactory.getCurrentSession().createQuery("from Split", Split.class).getResultList();
     }
 
     @Override

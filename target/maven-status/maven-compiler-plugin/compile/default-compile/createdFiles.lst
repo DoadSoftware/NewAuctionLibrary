@@ -1,4 +1,5 @@
 com\auction\util\AuctionUtil.class
+com\auction\model\Split.class
 com\auction\model\Clock.class
 com\auction\model\Statistics.class
 com\auction\util\AuctionFunctions$1.class

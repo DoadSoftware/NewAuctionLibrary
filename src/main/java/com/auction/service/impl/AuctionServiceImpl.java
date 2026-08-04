@@ -10,6 +10,7 @@ import com.auction.dao.AuctionDao;
 import com.auction.model.Flipper;
 import com.auction.model.NameSuper;
 import com.auction.model.Player;
+import com.auction.model.Split;
 import com.auction.model.Squad;
 import com.auction.model.Statistics;
 import com.auction.model.StatsType;
@@ -61,6 +62,11 @@ public List<Player> getAllPlayer() {
 @Override
 public List<NameSuper> getNameSupers(){
 	return auctionDao.getNameSupers();
+}
+
+@Override
+public List<Split> getSplits(){
+	return auctionDao.getsSplits();
 }
 
 @Override

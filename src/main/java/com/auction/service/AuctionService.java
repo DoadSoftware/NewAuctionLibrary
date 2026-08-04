@@ -5,6 +5,7 @@ import java.util.List;
 import com.auction.model.Flipper;
 import com.auction.model.NameSuper;
 import com.auction.model.Player;
+import com.auction.model.Split;
 import com.auction.model.Squad;
 import com.auction.model.Statistics;
 import com.auction.model.StatsType;
@@ -22,4 +23,5 @@ public interface AuctionService {
   List<Squad> getSquads();
   List<StatsType> getStatsTypes();
   List<Flipper> getFlipper();
+  List<Split> getSplits();
 }

@@ -13,10 +13,9 @@ public class Auction {
   private Player currentPlayers;
   private Clock clock;
   
-  @JsonIgnore
+  
   private List<Player> playersList;
   
-  @JsonIgnore
   private List<PlayerCount> TeamZoneList;
   
 public List<Team> getTeam() {
@@ -50,11 +49,11 @@ public Player getCurrentPlayers() {
 public void setCurrentPlayers(Player currentPlayers) {
 	this.currentPlayers = currentPlayers;
 }
-@JsonIgnore
+
 public List<PlayerCount> getTeamZoneList() {
 	return TeamZoneList;
 }
-@JsonIgnore
+
 public void setTeamZoneList(List<PlayerCount> teamZoneList) {
 	TeamZoneList = teamZoneList;
 }

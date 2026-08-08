@@ -40,10 +40,10 @@ public class AuctionFunctions {
 		return new SimpleDateFormat("yyyy-MM-dd").format(new Date(httpCon.getDate()));
 	}	
 	
-	public static Auction populateMatchVariables(AuctionService auctionService,Auction auction) 
+	public static Auction populateMatchVariables(Auction auction, List<Player> plyr, List<Team> tm) 
 	{
-		auction.setTeam(auctionService.getTeams());
-		auction.setPlayersList(auctionService.getAllPlayer());
+		auction.setTeam(tm);
+		auction.setPlayersList(plyr);
 		return auction;
 	}
 	public static List<String> getSquadDataInZone(Auction match, int team_id) {
@@ -393,6 +393,7 @@ public class AuctionFunctions {
 			List <PlayerCount> player = new ArrayList<PlayerCount>();
 			
 			player = new ObjectMapper().readValue(new ObjectMapper().writeValueAsString(tm), new TypeReference<List<PlayerCount>>() {});
+			if (player == null) player = new ArrayList<>();
 			if(tm != null) {
 				for (PlayerCount team : player) {
 				        team.setExpectedPurse(((300000*15) + 600000));
@@ -537,9 +538,13 @@ public class AuctionFunctions {
 							if(plyer.getTeamId()== tms.getTeamId()) {
 								
 								Player plyers = PlayerDb.stream().filter(pl->pl.getPlayerId()== plyer.getPlayerId()).findAny().orElse(null);
-								
+
+								if (plyers == null) {
+								    continue;
+								}
+
 								if(plyer.getSoldOrUnsold().equalsIgnoreCase("RTM") || plyer.getSoldOrUnsold().equalsIgnoreCase("SOLD") 
-										|| plyer.getSoldOrUnsold().equalsIgnoreCase("RETAIN")) {
+								        || plyer.getSoldOrUnsold().equalsIgnoreCase("RETAIN")) {
 									if(plyer.getSoldOrUnsold().equalsIgnoreCase("RTM")){
 										tms.setRtm(tms.getRtm()+1);
 									}
@@ -556,7 +561,7 @@ public class AuctionFunctions {
 								//Total Squad Size
 								tms.setPlayers(tms.getPlayers()+1);
 								
-								if(plyers.getNationality()!= null) {
+								if(plyers != null && plyers.getNationality() != null) {
 									if (plyers.getNationality().equalsIgnoreCase("INDIA"))
 										tms.setInd_male(plyers.getGender().equalsIgnoreCase("MALE") ? tms.getInd_male() + 1 : tms.getInd_female() + 1);
 									else

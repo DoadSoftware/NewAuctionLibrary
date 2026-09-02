@@ -14,6 +14,7 @@ import com.auction.model.Squad;
 import com.auction.model.Statistics;
 import com.auction.model.StatsType;
 import com.auction.model.Team;
+import com.auction.model.VariousText;
 import com.auction.util.AuctionUtil;
 
 @Transactional
@@ -138,5 +139,9 @@ public class AuctionDaoImpl implements AuctionDao {
         return sessionFactory.getCurrentSession()
                 .createQuery("from Flipper", Flipper.class)
                 .getResultList();
+    }
+    @Override
+    public List<VariousText> getVariousText() {
+    	return sessionFactory.getCurrentSession().createQuery("from VariousText", VariousText.class).getResultList();
     }
 }

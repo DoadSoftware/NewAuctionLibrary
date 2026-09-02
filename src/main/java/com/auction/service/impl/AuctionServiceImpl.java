@@ -15,6 +15,7 @@ import com.auction.model.Squad;
 import com.auction.model.Statistics;
 import com.auction.model.StatsType;
 import com.auction.model.Team;
+import com.auction.model.VariousText;
 import com.auction.service.AuctionService;
 
 @Service("auctionService")
@@ -67,6 +68,11 @@ public List<NameSuper> getNameSupers(){
 @Override
 public List<Split> getSplits(){
 	return auctionDao.getsSplits();
+}
+
+@Override
+public List<VariousText> getVariousText(){
+	return auctionDao.getVariousText();
 }
 
 @Override

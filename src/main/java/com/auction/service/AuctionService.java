@@ -10,6 +10,7 @@ import com.auction.model.Squad;
 import com.auction.model.Statistics;
 import com.auction.model.StatsType;
 import com.auction.model.Team;
+import com.auction.model.VariousText;
 
 public interface AuctionService {
   Player getPlayer(String whatToProcess, String valueToProcess);
@@ -24,4 +25,5 @@ public interface AuctionService {
   List<StatsType> getStatsTypes();
   List<Flipper> getFlipper();
   List<Split> getSplits();
+  List<VariousText> getVariousText();
 }

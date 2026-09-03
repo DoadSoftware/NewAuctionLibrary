@@ -43,7 +43,9 @@ public class AuctionFunctions {
 	public static Auction populateMatchVariables(Auction auction, List<Player> plyr, List<Team> tm) 
 	{
 		auction.setTeam(tm);
-		auction.setPlayersList(plyr);
+		if(null == auction.getPlayersList()) {
+			auction.setPlayersList(plyr);
+		}
 		return auction;
 	}
 	public static List<String> getSquadDataInZone(Auction match, int team_id) {

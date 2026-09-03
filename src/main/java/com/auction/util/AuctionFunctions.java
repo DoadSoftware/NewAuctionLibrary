@@ -206,7 +206,7 @@ public class AuctionFunctions {
 	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>(); // Preserves order of insertion
 
 	    // Initialize quotas
-	    zoneQuotas.put("APEX", 1);
+	    zoneQuotas.put("ACE", 1);
 	    zoneQuotas.put("ELITE", 2);
 	    zoneQuotas.put("PRO", 5);
 	    zoneQuotas.put("ROOKIE", 5);
@@ -732,10 +732,23 @@ public class AuctionFunctions {
 	    String str = String.format("%.2f", num / 100000);
       
     	   // Remove .00 if present
-//    	   if (str.endsWith(".00")) {
-//   	        return str.substring(0, str.length() - 3);
-//   	    
-//    	   }
+			/*
+			 * if (str.endsWith(".00")) { return str.substring(0, str.length() - 3);
+			 * 
+			 * }
+			 */
+	   
+	    return str;
+	}
+	public static String ConvertToLakhdoulbedecimal(double num) {
+	    String str = String.format("%.2f", num / 100000);
+      
+    	   // Remove .00 if present
+			
+			  if (str.endsWith(".00")) { return str.substring(0, str.length() - 3);
+			  
+			  }
+			 
 	   
 	    return str;
 	}

@@ -106,6 +106,12 @@ public class Player
   private int soldForPoints;
   
   @Transient
+  private String draftType;
+  
+  @Transient
+  private String categoryType;
+  
+  @Transient
   private String soldOrUnsold;
   
   @Transient
@@ -129,7 +135,7 @@ public Player(int playerId, String full_name, int teamId, int soldForPoints, Str
 }
 
 public Player(int playerId, String playerNumber, String full_name, String ticker_name, String category,String nationality,
-		String photoName, int teamId, int soldForPoints, String soldOrUnsold, String draft,String baseprice, String pair, String gender, String playersId) {
+		String photoName, int teamId, int soldForPoints, String soldOrUnsold, String draft,String baseprice, String pair, String gender, String playersId, String draftType, String categoryType) {
 	super();
 	this.playerId = playerId;
 	this.playersId = playersId;
@@ -146,6 +152,9 @@ public Player(int playerId, String playerNumber, String full_name, String ticker
 	this.basePrice = baseprice;
 	this.pair = pair;
 	this.gender = gender;
+	this.draftType = draftType;
+	this.categoryType = categoryType;
+	
 }
 
 public String getPlayersId() {
@@ -316,6 +325,22 @@ public void setSoldForPoints(int soldForPoints) {
 	this.soldForPoints = soldForPoints;
 }
 
+public String getDraftType() {
+	return draftType;
+}
+
+public void setDraftType(String draftType) {
+	this.draftType = draftType;
+}
+
+public String getCategoryType() {
+	return categoryType;
+}
+
+public void setCategoryType(String categoryType) {
+	this.categoryType = categoryType;
+}
+
 public String getSoldOrUnsold() {
 	return soldOrUnsold;
 }
@@ -415,9 +440,8 @@ public String toString() {
 			+ photoName + ", batsmanStyle=" + batsmanStyle + ", bowlerStyle=" + bowlerStyle + ", gender=" + gender
 			+ ", lastYearTeam=" + lastYearTeam + ", lastYearPrice=" + lastYearPrice + ", overseasPlayer="
 			+ overseasPlayer + ", teamId=" + teamId + ", team=" + team + ", soldForPoints=" + soldForPoints
-			+ ", soldOrUnsold=" + soldOrUnsold + ", playersId=" + playersId + ", draft=" + draft + "]";
+			+ ", draftType=" + draftType + ", categoryType=" + categoryType + ", soldOrUnsold=" + soldOrUnsold
+			+ ", playersId=" + playersId + ", draft=" + draft + "]";
 }
-
-
 
 }

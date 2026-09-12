@@ -9,6 +9,7 @@ com\auction\model\Auction.class
 com\auction\model\Player.class
 com\auction\util\AuctionFunctions$PlayerStatsComparator.class
 com\auction\model\Configurations.class
+com\auction\model\VariousText.class
 com\auction\service\AuctionService.class
 com\auction\model\NameSuper.class
 com\auction\dao\impl\AuctionDaoImpl.class

@@ -450,7 +450,7 @@ public class AuctionFunctions {
 }
 	public static List<PlayerCount> PlayerCountPerTeamZoneWise(List<Team>tm,List<Player>ply, List<Player> PlayerDb, String broadcaster) throws Exception {
 			List <PlayerCount> player = new ArrayList<PlayerCount>();
-			
+			System.out.println("TEAMS - " + tm.toString());
 			player = new ObjectMapper().readValue(new ObjectMapper().writeValueAsString(tm), new TypeReference<List<PlayerCount>>() {});
 			if (player == null) player = new ArrayList<>();
 			if(tm != null) {
@@ -595,7 +595,6 @@ public class AuctionFunctions {
 					for(Player plyer : ply) {
 						for(PlayerCount tms: player) {
 							if(plyer.getTeamId()== tms.getTeamId()) {
-								
 								Player plyers = PlayerDb.stream().filter(pl->pl.getPlayerId()== plyer.getPlayerId()).findAny().orElse(null);
 
 								if (plyers == null) {

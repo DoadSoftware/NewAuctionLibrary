@@ -55,6 +55,18 @@ public class Statistics
   @Column(name="UTT_Assignment")
   private String utt_assignment;
   
+  @Column(name="BatAvg")
+  private String batAvg;
+  
+  @Column(name="BowlAvg")
+  private String bowlAvg;
+  
+  @Column(name="Best_Figure")
+  private String best_Figure;
+  
+  @Column(name="Best_Score")
+  private String best_Score;
+  
   public String getBest_rank() {
 	return best_rank;
 }
@@ -284,4 +296,37 @@ public Integer getRace() {
 public void setRace(Integer race) {
 	this.race = race;
 }
+
+public String getBatAvg() {
+	return batAvg;
+}
+
+public void setBatAvg(String batAvg) {
+	this.batAvg = batAvg;
+}
+
+public String getBowlAvg() {
+	return bowlAvg;
+}
+
+public void setBowlAvg(String bowlAvg) {
+	this.bowlAvg = bowlAvg;
+}
+
+public String getBest_Figure() {
+	return best_Figure;
+}
+
+public void setBest_Figure(String best_Figure) {
+	this.best_Figure = best_Figure;
+}
+
+public String getBest_Score() {
+	return best_Score;
+}
+
+public void setBest_Score(String best_Score) {
+	this.best_Score = best_Score;
+}
+
 }

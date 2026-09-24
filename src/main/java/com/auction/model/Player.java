@@ -99,8 +99,8 @@ public class Player
   @Column(name = "Members")
   private String members;
   
-  @Column(name = "Developement")
-  private String developement;
+  @Column(name = "Development")
+  private String development;
 
 @Transient
   private int teamId;
@@ -142,7 +142,7 @@ public Player(int playerId, String full_name, int teamId, int soldForPoints, Str
 
 public Player(int playerId, String playerNumber, String full_name, String ticker_name, String category,String nationality,
 		String photoName, int teamId, int soldForPoints, String soldOrUnsold, String draft,String baseprice, String pair, String gender, String playersId, String draftType, String categoryType,
-		String members, String developement) {
+		String members, String development) {
 	super();
 	this.playerId = playerId;
 	this.playersId = playersId;
@@ -162,7 +162,7 @@ public Player(int playerId, String playerNumber, String full_name, String ticker
 	this.draftType = draftType;
 	this.categoryType = categoryType;
 	this.members = members;
-	this.developement = developement;
+	this.development = development;
 	
 }
 
@@ -447,12 +447,12 @@ public void setMembers(String members) {
 	this.members = members;
 }
 
-public String getDevelopement() {
-	return developement;
+public String getDevelopment() {
+	return development;
 }
 
-public void setDevelopement(String developement) {
-	this.developement = developement;
+public void setDevelopment(String development) {
+	this.development = development;
 }
 
 @Override
@@ -464,7 +464,7 @@ public String toString() {
 			+ ", category=" + category + ", nationality=" + nationality + ", basePrice=" + basePrice + ", photoName="
 			+ photoName + ", batsmanStyle=" + batsmanStyle + ", bowlerStyle=" + bowlerStyle + ", gender=" + gender
 			+ ", lastYearTeam=" + lastYearTeam + ", lastYearPrice=" + lastYearPrice + ", overseasPlayer="
-			+ overseasPlayer + ", members=" + members + ", developement=" + developement + ", teamId=" + teamId
+			+ overseasPlayer + ", members=" + members + ", development=" + development + ", teamId=" + teamId
 			+ ", team=" + team + ", soldForPoints=" + soldForPoints + ", draftType=" + draftType + ", categoryType="
 			+ categoryType + ", soldOrUnsold=" + soldOrUnsold + ", playersId=" + playersId + ", draft=" + draft + "]";
 }

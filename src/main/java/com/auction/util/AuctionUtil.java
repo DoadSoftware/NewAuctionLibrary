@@ -17,6 +17,7 @@ public class AuctionUtil {
 	public final static String OUTPUT_XML = "OUTPUT.XML";
 	public final static String AUCTION_XML = "AUCTION.XML";
 	public final static String AUCTION_JSON = "AUCTION.JSON";
+	public final static String DRAFTED_PLAYERS_SUMMARY = "drafted_players_summary.JSON";
 	public final static String CRAWL_OUTPUT_XML = "CRAWL_OUTPUT.XML";
 	
 	public final static String CARD_CALL_ORDER_XML = "CardCallOrder.XML";

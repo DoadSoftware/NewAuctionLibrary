@@ -37,19 +37,13 @@ public class Split
 		super();
   }
 
- 
-
 public String getLeftname() {
 	return leftname;
 }
 
-
-
 public void setLeftname(String leftname) {
 	this.leftname = leftname;
 }
-
-
 
 public String getRightname() {
 	return rightname;

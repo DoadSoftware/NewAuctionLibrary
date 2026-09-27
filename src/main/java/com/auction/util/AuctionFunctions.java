@@ -838,9 +838,15 @@ public class AuctionFunctions {
 	   
 	    return str;
 	}
+	public static String ConvertToThousand(double num) {
+	    String str = String.format("%.2f", num / 1000);
+	    if (str.endsWith(".00")) {
+	        return str.substring(0, str.length() - 3);
+	    }
+	    return str;
+	}
 	public static String ConvertToLakh(double num) {
 	    String str = String.format("%.2f", num / 100000);
-      
     	   // Remove .00 if present
 			/*
 			 * if (str.endsWith(".00")) { return str.substring(0, str.length() - 3);

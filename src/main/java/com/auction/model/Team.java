@@ -33,6 +33,12 @@ public class Team {
   
   @Column(name = "TeamBadge")
   private String teamBadge;
+  
+  @Column(name = "TeamApiId")
+  private int teamApiId;
+  
+  @Column(name = "TeamPickOrder")
+  private int teamPickOrder;
 
 public String getTeamBadge() {
 	return teamBadge;
@@ -98,11 +104,28 @@ public void setTeamTotalRTM(String teamTotalRTM) {
 	this.teamTotalRTM = teamTotalRTM;
 }
 
+public int getTeamApiId() {
+	return teamApiId;
+}
+
+public void setTeamApiId(int teamApiId) {
+	this.teamApiId = teamApiId;
+}
+
+public int getTeamPickOrder() {
+	return teamPickOrder;
+}
+
+public void setTeamPickOrder(int teamPickOrder) {
+	this.teamPickOrder = teamPickOrder;
+}
+
 @Override
 public String toString() {
 	return "Team [teamId=" + teamId + ", teamName1=" + teamName1 + ", teamName2=" + teamName2 + ", teamName3="
 			+ teamName3 + ", teamName4=" + teamName4 + ", teamTotalPurse=" + teamTotalPurse + ", teamTotalRTM="
-			+ teamTotalRTM + "]";
+			+ teamTotalRTM + ", teamBadge=" + teamBadge + ", teamApiId=" + teamApiId + ", teamPickOrder="
+			+ teamPickOrder + "]";
 }
 
 }

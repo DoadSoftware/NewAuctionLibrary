@@ -101,6 +101,9 @@ public class Player
   
   @Column(name = "Development")
   private String development;
+  
+  @Column(name = "PlayerApiID")
+  private int playerApiID;
 
 @Transient
   private int teamId;
@@ -455,6 +458,14 @@ public void setDevelopment(String development) {
 	this.development = development;
 }
 
+public int getPlayerApiID() {
+	return playerApiID;
+}
+
+public void setPlayerApiID(int playerApiID) {
+	this.playerApiID = playerApiID;
+}
+
 @Override
 public String toString() {
 	return "Player [playerId=" + playerId + ", playerNumber=" + playerNumber + ", full_name=" + full_name
@@ -464,9 +475,10 @@ public String toString() {
 			+ ", category=" + category + ", nationality=" + nationality + ", basePrice=" + basePrice + ", photoName="
 			+ photoName + ", batsmanStyle=" + batsmanStyle + ", bowlerStyle=" + bowlerStyle + ", gender=" + gender
 			+ ", lastYearTeam=" + lastYearTeam + ", lastYearPrice=" + lastYearPrice + ", overseasPlayer="
-			+ overseasPlayer + ", members=" + members + ", development=" + development + ", teamId=" + teamId
-			+ ", team=" + team + ", soldForPoints=" + soldForPoints + ", draftType=" + draftType + ", categoryType="
-			+ categoryType + ", soldOrUnsold=" + soldOrUnsold + ", playersId=" + playersId + ", draft=" + draft + "]";
+			+ overseasPlayer + ", members=" + members + ", development=" + development + ", playerApiID=" + playerApiID
+			+ ", teamId=" + teamId + ", team=" + team + ", soldForPoints=" + soldForPoints + ", draftType=" + draftType
+			+ ", categoryType=" + categoryType + ", soldOrUnsold=" + soldOrUnsold + ", playersId=" + playersId
+			+ ", draft=" + draft + "]";
 }
 
 }

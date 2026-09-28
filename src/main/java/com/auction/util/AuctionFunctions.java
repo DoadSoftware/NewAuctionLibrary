@@ -561,14 +561,19 @@ public class AuctionFunctions {
 }
 	public static List<PlayerCount> PlayerCountPerTeamZoneWise(List<Team>tm,List<Player>ply, List<Player> PlayerDb, String broadcaster) throws Exception {
 			List <PlayerCount> player = new ArrayList<PlayerCount>();
-			System.out.println("TEAMS - " + tm.toString());
 			player = new ObjectMapper().readValue(new ObjectMapper().writeValueAsString(tm), new TypeReference<List<PlayerCount>>() {});
 			if (player == null) player = new ArrayList<>();
 			if(tm != null) {
 				for (PlayerCount team : player) {
-				        team.setExpectedPurse(((300000*15) + 600000));
-				        team.setRemaingPurse(Integer.valueOf(team.getTeamTotalPurse())-((300000*15) + 600000));
-				        team.setPurseRemaing(Integer.valueOf(team.getTeamTotalPurse()));
+				    team.setExpectedPurse((300000 * 15) + 600000);
+				    if (team.getTeamTotalPurse() == null || team.getTeamTotalPurse().trim().isEmpty()) {
+				        team.setRemaingPurse(0);
+				        team.setPurseRemaing(0);
+				        continue;
+				    }
+				    int purse = Integer.valueOf(team.getTeamTotalPurse());
+				    team.setRemaingPurse(purse - ((300000 * 15) + 600000));
+				    team.setPurseRemaing(purse);
 				}
 			}
 			

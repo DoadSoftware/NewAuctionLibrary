@@ -96,6 +96,55 @@ public class AuctionFunctions {
 
 	    return zone_data;
 	}
+	public static List<String> getILTSquadDataInZone(Auction match, int team_id) {
+	    List<String> zone_data = new ArrayList<>();
+	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>(); // Preserves order of insertion
+
+	    // Initialize quotas
+	    zoneQuotas.put("FICC", 11);
+	    zoneQuotas.put("UAE", 4);
+	    zoneQuotas.put("SA", 1);
+	    zoneQuotas.put("KUWAIT", 1);
+	    zoneQuotas.put("AM", 1);
+	    zoneQuotas.put("ZONE", 7);
+
+	    // Process players in the match for the given team ID
+	    if (match.getPlayers() != null) {
+	        for (Player player : match.getPlayers()) {
+	            if (player.getTeamId() == team_id) {
+	                zone_data.add(String.valueOf(player.getPlayerId()));
+	                for(Player plyr : match.getPlayersList()) {
+	                	if(plyr.getPlayerId() == player.getPlayerId()) {
+	                		 // Get the corresponding zone key for the player's category
+	                		System.out.println("plyr.getMembers() = " + plyr.getMembers());
+	                        String categoryKey = getILTZoneKey(plyr.getMembers());
+	                        if (categoryKey != null) {
+	                        	System.out.println("categoryKey = " + categoryKey);
+	                            // Decrement quota if available, or fallback to "ZONE"
+	                            if (zoneQuotas.get(categoryKey) > 0) {
+	                                zoneQuotas.put(categoryKey, zoneQuotas.get(categoryKey) - 1);
+	                            } else if (zoneQuotas.get("ZONE") > 0) {
+	                                zoneQuotas.put("ZONE", zoneQuotas.get("ZONE") - 1);
+	                            }
+	                        }
+	    	                break;
+	                	}
+	                }
+	            }
+	        }
+	    }
+
+	 // Add remaining quotas as placeholders in the list
+	    for (Map.Entry<String, Integer> entry : zoneQuotas.entrySet()) {
+	        String zone = entry.getKey();
+	        int count = entry.getValue();
+	        for (int i = 0; i < count; i++) {
+	        	zone_data.add(zone);
+	        }
+	    }
+
+	    return zone_data;
+	}
 	public static List<String> getSquadDataMT20InZone(Auction match, int team_id, String gender) {
 	    List<String> zone_data = new ArrayList<>();
 	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>(); // Preserves order of insertion
@@ -477,6 +526,21 @@ public class AuctionFunctions {
 		}
 	}
 	
+	private static String getILTZoneKey(String category) {
+		if(category != null) {
+			switch (category) {
+		        case "Full ICC Member": return "FICC";
+		        case "UAE": return "UAE";
+		        case "KUWAIT": return "KUWAIT";
+		        case "SAUDI ARABIA": return "SA";
+		        case "Associate Members": return "AM";
+		        default: return null; 
+		    }
+		}else {
+			return null;
+		}
+	}
+	
 	private static String getZoneKeyUTT(String category, String gender) {
 		switch (category.toUpperCase()) {
 	        case "INT.M": return "INT_M";
@@ -718,7 +782,7 @@ public class AuctionFunctions {
 								}
 
 								if(plyer.getSoldOrUnsold().equalsIgnoreCase("RTM") || plyer.getSoldOrUnsold().equalsIgnoreCase("SOLD") 
-								        || plyer.getSoldOrUnsold().equalsIgnoreCase("RETAIN")) {
+								        || plyer.getSoldOrUnsold().equalsIgnoreCase("RETAIN") || plyer.getSoldOrUnsold().equalsIgnoreCase("SIGNED")) {
 									if(plyer.getSoldOrUnsold().equalsIgnoreCase("RTM")){
 										tms.setRtm(tms.getRtm()+1);
 									}

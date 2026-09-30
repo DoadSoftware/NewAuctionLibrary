@@ -907,11 +907,20 @@ public class AuctionFunctions {
 	   
 	    return str;
 	}
-	public static String ConvertToThousand(double num) {
-	    String str = String.format("%.2f", num / 1000);
+	public static String ConvertToThousand(double num, boolean useComma) {
+	    double value = num / 1000;
+	    String str = String.format("%.2f", value);
+
 	    if (str.endsWith(".00")) {
-	        return str.substring(0, str.length() - 3);
+	        str = str.substring(0, str.length() - 3);
 	    }
+
+	    if(useComma) {
+	    	if (value >= 1000) {
+		        str = String.format("%,.0f", value);
+		    }
+	    }
+	    
 	    return str;
 	}
 	public static String ConvertToLakh(double num) {

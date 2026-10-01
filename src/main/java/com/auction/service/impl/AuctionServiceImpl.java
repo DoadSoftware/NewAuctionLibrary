@@ -46,6 +46,7 @@ public List<Player> getPlayers(String whatToProcess, String valueToProcess) {
 }
 
 @Override
+@Transactional(readOnly = true)
 public List<Statistics> getAllStats() {
 	return auctionDao.getAllStats();
 }

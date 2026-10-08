@@ -16,6 +16,12 @@ public class VariousText
 
   @Column(name = "Prompt")
   private String prompt;
+  
+  @Column(name = "VariousType")
+  private String variousType;
+  
+  @Column(name = "UseThis")
+  private String useThis;
 
   public int getHeaderID() {
 	return headerID;
@@ -49,6 +55,23 @@ public class VariousText
 	this.subheader = subheader;
   }
 
+  public String getVariousType() {
+	return variousType;
+}
+
+  public void setVariousType(String variousType) {
+	this.variousType = variousType;
+  }
+
+  public String getUseThis() {
+	return useThis;
+}
+
+  public void setUseThis(String useThis) {
+	this.useThis = useThis;
+  }
+
+
   @Column(name = "Header")
   private String header;
   
@@ -58,9 +81,6 @@ public class VariousText
   public VariousText() {
 		super();
   }
-
- 
-
 
 
 }

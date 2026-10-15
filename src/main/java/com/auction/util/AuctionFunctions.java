@@ -424,11 +424,10 @@ public class AuctionFunctions {
 	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>(); // Preserves order of insertion
 
 	    // Initialize quotas
-//	    zoneQuotas.put("A+", 3);
-//	    zoneQuotas.put("A", 3);
-//	    zoneQuotas.put("B", 3);
-//	    zoneQuotas.put("C", 4);
-//	    zoneQuotas.put("ZONE", 14);
+	    zoneQuotas.put("A", 3);
+	    zoneQuotas.put("B", 3);
+	    zoneQuotas.put("C", 4);
+	    zoneQuotas.put("ZONE", 6);
 
 	    // Process players in the match for the given team ID
 	    if (match.getPlayers() != null) {

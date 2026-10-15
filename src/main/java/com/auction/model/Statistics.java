@@ -67,6 +67,24 @@ public class Statistics
   @Column(name="Best_Score")
   private String best_Score;
   
+  @Column(name="SuperTen")
+  private String superTen;
+  
+  @Column(name="Raid_Points")
+  private String raid_Points;
+  
+  @Column(name="Raid_Sr")
+  private String raid_Sr;
+  
+  @Column(name="HighFive")
+  private String highFive;
+  
+  @Column(name="Tackle_Points")
+  private String tackle_Points;
+  
+  @Column(name="Tackle_Sr")
+  private String tackle_Sr;
+  
   public String getBest_rank() {
 	return best_rank;
 }
@@ -327,6 +345,54 @@ public String getBest_Score() {
 
 public void setBest_Score(String best_Score) {
 	this.best_Score = best_Score;
+}
+
+public String getRaid_Points() {
+	return raid_Points;
+}
+
+public void setRaid_Points(String raid_Points) {
+	this.raid_Points = raid_Points;
+}
+
+public String getRaid_Sr() {
+	return raid_Sr;
+}
+
+public void setRaid_Sr(String raid_Sr) {
+	this.raid_Sr = raid_Sr;
+}
+
+public String getTackle_Points() {
+	return tackle_Points;
+}
+
+public void setTackle_Points(String tackle_Points) {
+	this.tackle_Points = tackle_Points;
+}
+
+public String getTackle_Sr() {
+	return tackle_Sr;
+}
+
+public void setTackle_Sr(String tackle_Sr) {
+	this.tackle_Sr = tackle_Sr;
+}
+
+public String getSuperTen() {
+	return superTen;
+}
+
+public void setSuperTen(String superTen) {
+	this.superTen = superTen;
+}
+
+public String getHighFive() {
+	return highFive;
+}
+
+public void setHighFive(String highFive) {
+	this.highFive = highFive;
 }
 
 }

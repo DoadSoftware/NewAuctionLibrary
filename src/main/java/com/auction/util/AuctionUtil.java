@@ -45,6 +45,10 @@ public class AuctionUtil {
 	public final static String SOLD = "SOLD";
 	public final static String BID = "BID";
 	public final static String RTM = "RTM";
+	public final static String START_PICK = "START_PICK";
+	public final static String END_PICK = "END_PICK";
+	public final static String PICK_PENDING = "PENDING";
+	public final static String PICK_DONE = "PICKED";
 	public final static String UNSOLD = "UNSOLD";
 	public final static String REAUCTION = "REAUCTION";
 

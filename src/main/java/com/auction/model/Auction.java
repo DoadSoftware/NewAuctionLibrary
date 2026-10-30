@@ -18,6 +18,10 @@ public class Auction {
   
   private List<PlayerCount> TeamZoneList;
   
+  private List<TeamPick> pick;
+
+  private boolean pickActive;
+  
 public List<Team> getTeam() {
 	return team;
 }
@@ -56,6 +60,23 @@ public List<PlayerCount> getTeamZoneList() {
 
 public void setTeamZoneList(List<PlayerCount> teamZoneList) {
 	TeamZoneList = teamZoneList;
+}
+
+
+public List<TeamPick> getPick() {
+	return pick;
+}
+
+public void setPick(List<TeamPick> pick) {
+	this.pick = pick;
+}
+
+public boolean isPickActive() {
+	return pickActive;
+}
+
+public void setPickActive(boolean pickActive) {
+	this.pickActive = pickActive;
 }
 
 public Clock getClock() {

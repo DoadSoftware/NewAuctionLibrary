@@ -250,6 +250,48 @@ public class AuctionFunctions {
 
 	    return zone_data;
 	}
+	public static List<String> getSquadDataAFGDRAFTInZone(Auction match, int team_id) {
+	    List<String> zone_data = new ArrayList<>();
+	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>(); // Preserves order of insertion
+
+	    // Initialize quotas
+	    zoneQuotas.put("ZONE", 20);
+
+	    // Process players in the match for the given team ID
+	    if (match.getPlayers() != null) {
+	        for (Player player : match.getPlayers()) {
+	            if (player.getTeamId() == team_id) {
+	                zone_data.add(String.valueOf(player.getPlayerId()));
+	                for(Player plyr : match.getPlayersList()) {
+	                	if(plyr.getPlayerId() == player.getPlayerId()) {
+	                		 // Get the corresponding zone key for the player's category
+	                        String categoryKey = plyr.getCategory().trim().toUpperCase();
+	                        if (categoryKey != null) {
+	                            // Decrement quota if available, or fallback to "ZONE"
+	                            if (zoneQuotas.get(categoryKey) > 0) {
+	                                zoneQuotas.put(categoryKey, zoneQuotas.get(categoryKey) - 1);
+	                            } else if (zoneQuotas.get("ZONE") > 0) {
+	                                zoneQuotas.put("ZONE", zoneQuotas.get("ZONE") - 1);
+	                            }
+	                        }
+	    	                break;
+	                	}
+	                }
+	            }
+	        }
+	    }
+
+	 // Add remaining quotas as placeholders in the list
+	    for (Map.Entry<String, Integer> entry : zoneQuotas.entrySet()) {
+	        String zone = entry.getKey();
+	        int count = entry.getValue();
+	        for (int i = 0; i < count; i++) {
+	        	zone_data.add(zone);
+	        }
+	    }
+
+	    return zone_data;
+	}
 	public static List<String> getSquadDataVCLInZone(Auction match, int team_id) {
 	    List<String> zone_data = new ArrayList<>();
 	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>(); // Preserves order of insertion

@@ -22,6 +22,8 @@ public class Auction {
 
   private boolean pickActive;
   
+	private String currentRound = "";
+  
 public List<Team> getTeam() {
 	return team;
 }
@@ -82,8 +84,17 @@ public void setPickActive(boolean pickActive) {
 public Clock getClock() {
 	return clock;
 }
+
 public void setClock(Clock clock) {
 	this.clock = clock;
 }
- 
+
+public String getCurrentRound() {
+	return currentRound;
+}
+
+public void setCurrentRound(String currentRound) {
+	this.currentRound = currentRound;
+}
+
 }

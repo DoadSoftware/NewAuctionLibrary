@@ -1,3 +1,4 @@
+C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\model\TeamPick.java
 C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\model\Configurations.java
 C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\model\Flipper.java
 C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\model\LeagueTable.java
@@ -8,11 +9,13 @@ C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\model\DraftedPlayer.java
 C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\util\AuctionFunctions.java
 C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\model\VariousText.java
 C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\model\Clock.java
+C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\model\PickOrder.java
 C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\model\Team.java
 C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\model\Player.java
 C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\model\Auction.java
 C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\model\LeagueTeam.java
 C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\model\Squad.java
+C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\model\RoundPick.java
 C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\dao\AuctionDao.java
 C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\util\AuctionUtil.java
 C:\DOAD_NEW\NewAuctionLibrary\src\main\java\com\auction\model\PlayerCount.java

@@ -7,7 +7,7 @@ public class PlayerCount extends Team{
 	
 	int a,b,c,northZone,eastZone,U19,southZone,ind_male,ind_female,for_male,for_female,
 		westZone,centralZone,rtm,remaingPurse,expectedPurse,players,purseRemaing,
-		senior,emerging,development,icon;
+		senior,emerging,development,icon,platinum,diamond,gold,silver;
 	
 	List<Player> Player = new ArrayList<Player>();
 	

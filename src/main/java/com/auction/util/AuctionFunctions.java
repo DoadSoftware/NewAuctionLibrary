@@ -48,19 +48,32 @@ public class AuctionFunctions {
 		}
 		return auction;
 	}
-	public static List<String> getSquadDataInZone(Auction match, int team_id) {
+	public static List<String> getSquadDataInZone(Auction match, int team_id, String broadcaster) {
 	    List<String> zone_data = new ArrayList<>();
 	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>(); // Preserves order of insertion
-
-	    // Initialize quotas
-	    zoneQuotas.put("NZ", 2);
-	    zoneQuotas.put("CZ", 2);
-	    zoneQuotas.put("EZ", 2);
-	    zoneQuotas.put("WZ", 2);
-	    zoneQuotas.put("SZ", 2);
-	    zoneQuotas.put("U19", 2);
-	    zoneQuotas.put("ZONE", 6);
-
+	    
+	 // Initialize quotas
+	    switch(broadcaster) {
+	    case "AFG_DRAFT":
+	    	zoneQuotas.put("PLATINUM", 2);
+		    zoneQuotas.put("DIAMOND", 2);
+		    zoneQuotas.put("GOLD", 5);
+		    zoneQuotas.put("SILVER", 5);
+		    zoneQuotas.put("EMERGING", 3);
+		    zoneQuotas.put("SUPPLEMENTARY", 2);
+		    zoneQuotas.put("ZONE", 0);
+	    	break;
+	    default:
+	    	zoneQuotas.put("NZ", 2);
+		    zoneQuotas.put("CZ", 2);
+		    zoneQuotas.put("EZ", 2);
+		    zoneQuotas.put("WZ", 2);
+		    zoneQuotas.put("SZ", 2);
+		    zoneQuotas.put("U19", 2);
+		    zoneQuotas.put("ZONE", 6);
+	    	break;
+	    }
+	    
 	    // Process players in the match for the given team ID
 	    if (match.getPlayers() != null) {
 	        for (Player player : match.getPlayers()) {
@@ -250,48 +263,7 @@ public class AuctionFunctions {
 
 	    return zone_data;
 	}
-	public static List<String> getSquadDataAFGDRAFTInZone(Auction match, int team_id) {
-	    List<String> zone_data = new ArrayList<>();
-	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>(); // Preserves order of insertion
-
-	    // Initialize quotas
-	    zoneQuotas.put("ZONE", 20);
-
-	    // Process players in the match for the given team ID
-	    if (match.getPlayers() != null) {
-	        for (Player player : match.getPlayers()) {
-	            if (player.getTeamId() == team_id) {
-	                zone_data.add(String.valueOf(player.getPlayerId()));
-	                for(Player plyr : match.getPlayersList()) {
-	                	if(plyr.getPlayerId() == player.getPlayerId()) {
-	                		 // Get the corresponding zone key for the player's category
-	                        String categoryKey = plyr.getCategory().trim().toUpperCase();
-	                        if (categoryKey != null) {
-	                            // Decrement quota if available, or fallback to "ZONE"
-	                            if (zoneQuotas.get(categoryKey) > 0) {
-	                                zoneQuotas.put(categoryKey, zoneQuotas.get(categoryKey) - 1);
-	                            } else if (zoneQuotas.get("ZONE") > 0) {
-	                                zoneQuotas.put("ZONE", zoneQuotas.get("ZONE") - 1);
-	                            }
-	                        }
-	    	                break;
-	                	}
-	                }
-	            }
-	        }
-	    }
-
-	 // Add remaining quotas as placeholders in the list
-	    for (Map.Entry<String, Integer> entry : zoneQuotas.entrySet()) {
-	        String zone = entry.getKey();
-	        int count = entry.getValue();
-	        for (int i = 0; i < count; i++) {
-	        	zone_data.add(zone);
-	        }
-	    }
-
-	    return zone_data;
-	}
+	
 	public static List<String> getSquadDataVCLInZone(Auction match, int team_id) {
 	    List<String> zone_data = new ArrayList<>();
 	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>(); // Preserves order of insertion
@@ -702,10 +674,8 @@ public class AuctionFunctions {
 			                        if (plyers == null) continue;
 			                        String status = plyer.getSoldOrUnsold();
 
-			                        if (!pairProcessed && status != null && (
-			                                status.equalsIgnoreCase("RTM") ||
-			                                status.equalsIgnoreCase("SOLD") ||
-			                                status.equalsIgnoreCase("RETAIN"))) {
+			                        if (!pairProcessed && status != null && (status.equalsIgnoreCase("RTM") ||
+			                                status.equalsIgnoreCase("SOLD") || status.equalsIgnoreCase("RETAIN"))) {
 
 			                            if (status.equalsIgnoreCase("RTM")) {
 			                                tms.setRtm(tms.getRtm() + 1);
@@ -766,14 +736,8 @@ public class AuctionFunctions {
 			                                    break;
 
 			                                default:
-			                                    tms.getCategory().put(
-			                                            cat,
-			                                            tms.getCategory().getOrDefault(cat, 0) + 1
-			                                    );
-
-			                                    tms.getPlayerCategoryWise()
-			                                            .computeIfAbsent(cat, k -> new ArrayList<>())
-			                                            .add(plyers);
+			                                    tms.getCategory().put(cat, tms.getCategory().getOrDefault(cat, 0) + 1);
+			                                    tms.getPlayerCategoryWise().computeIfAbsent(cat, k -> new ArrayList<>()).add(plyers);
 			                            }
 			                        }
 			                    }
@@ -782,12 +746,8 @@ public class AuctionFunctions {
 			        }
 			    }
 
-			    Set<String> allCategorie = PlayerDb.stream()
-			            .map(Player::getCategory)
-			            .filter(Objects::nonNull)
-			            .map(String::trim)
-			            .map(String::toUpperCase)
-			            .collect(Collectors.toSet());
+			    Set<String> allCategorie = PlayerDb.stream().map(Player::getCategory).filter(Objects::nonNull)
+			            .map(String::trim).map(String::toUpperCase).collect(Collectors.toSet());
 
 			    for (PlayerCount tms : player) {
 			        for (String category : allCategorie) {
@@ -797,16 +757,10 @@ public class AuctionFunctions {
 			    }
 
 			    for (PlayerCount tms : player) {
-			        Map<String, Integer> sortedCategoryMap = tms.getCategory().entrySet()
-			                .stream()
+			        Map<String, Integer> sortedCategoryMap = tms.getCategory().entrySet().stream()
 			                .sorted(Comparator.comparingInt(e -> e.getKey().length()))
-			                .collect(Collectors.toMap(
-			                        Map.Entry::getKey,
-			                        Map.Entry::getValue,
-			                        (e1, e2) -> e1,
-			                        LinkedHashMap::new
-			                ));
-
+			                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+			                        (e1, e2) -> e1, LinkedHashMap::new));
 			        tms.setCategory(sortedCategoryMap);
 			    }
 
@@ -900,15 +854,10 @@ public class AuctionFunctions {
 			        }
 			    }
 			    for (PlayerCount tms : player) {
-			    	 Map<String, Integer> sortedCategoryMap = tms.getCategory().entrySet()
-				    	    .stream()
+			    	 Map<String, Integer> sortedCategoryMap = tms.getCategory().entrySet().stream()
 				    	    .sorted(Comparator.comparingInt(e -> e.getKey().length()))
-				    	    .collect(Collectors.toMap(
-				    	        Map.Entry::getKey,
-				    	        Map.Entry::getValue,
-				    	        (e1, e2) -> e1,
-				    	        LinkedHashMap::new
-				    	    ));
+				    	    .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,
+				    	        (e1, e2) -> e1,LinkedHashMap::new));
 
 				    	tms.setCategory(sortedCategoryMap); // Assuming setter exists	
 			    }

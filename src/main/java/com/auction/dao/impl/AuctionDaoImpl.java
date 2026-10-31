@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.auction.dao.AuctionDao;
 import com.auction.model.Flipper;
 import com.auction.model.NameSuper;
+import com.auction.model.PickOrder;
 import com.auction.model.Player;
 import com.auction.model.Split;
 import com.auction.model.Squad;
@@ -143,5 +144,10 @@ public class AuctionDaoImpl implements AuctionDao {
     @Override
     public List<VariousText> getVariousText() {
     	return sessionFactory.getCurrentSession().createQuery("from VariousText", VariousText.class).getResultList();
+    }
+    
+    @Override
+    public List<PickOrder> getPickOrders() {
+    	return sessionFactory.getCurrentSession().createQuery("from PickOrder", PickOrder.class).getResultList();
     }
 }

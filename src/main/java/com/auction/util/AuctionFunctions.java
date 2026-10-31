@@ -56,7 +56,7 @@ public class AuctionFunctions {
 	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>();
 	
 	    switch (broadcaster) {
-	        case "AFG_DRAFT":
+	        case "AFG_DRAFT": case "AFG_DRAFT_BIGSCREEN":
 	            zoneQuotas.put("PLATINUM", 2);
 	            zoneQuotas.put("DIAMOND", 2);
 	            zoneQuotas.put("GOLD", 5);

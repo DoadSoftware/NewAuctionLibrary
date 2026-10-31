@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.auction.model.Flipper;
 import com.auction.model.NameSuper;
+import com.auction.model.PickOrder;
 import com.auction.model.Player;
 import com.auction.model.Split;
 import com.auction.model.Squad;
@@ -26,4 +27,5 @@ public interface AuctionDao {
   List<Flipper> getFlipper();
   List<Split> getsSplits();
   List<VariousText> getVariousText();
+  List<PickOrder> getPickOrders();
 }

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.auction.dao.AuctionDao;
 import com.auction.model.Flipper;
 import com.auction.model.NameSuper;
+import com.auction.model.PickOrder;
 import com.auction.model.Player;
 import com.auction.model.Split;
 import com.auction.model.Squad;
@@ -91,4 +92,8 @@ public List<Flipper> getFlipper() {
 	return auctionDao.getFlipper();
 }
 
+@Override
+public List<PickOrder> getPickOrders() {
+	return auctionDao.getPickOrders();
+}
 }

@@ -51,10 +51,11 @@ public class AuctionFunctions {
 	public static List<String> getSquadDataInZone(Auction match, int team_id, String broadcaster) {
 	    List<String> zone_data = new ArrayList<>();
 	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>(); // Preserves order of insertion
-	    
+	    System.out.println("Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 	 // Initialize quotas
 	    switch(broadcaster) {
 	    case "AFG_DRAFT":
+	    	System.out.println("ehlllll");
 	    	zoneQuotas.put("PLATINUM", 2);
 		    zoneQuotas.put("DIAMOND", 2);
 		    zoneQuotas.put("GOLD", 5);

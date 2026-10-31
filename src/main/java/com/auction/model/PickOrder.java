@@ -31,6 +31,9 @@ public class PickOrder {
   @Column(name = "PickTeam5") 
   private Integer pickTeam5;
 
+  @Column(name = "Category")
+  private String category;
+  
   public int getPickId() {
 	return pickId;
   }
@@ -87,10 +90,19 @@ public class PickOrder {
 	this.pickTeam5 = pickTeam5;
   }
 
+  public String getCategory() {
+	return category;
+}
+
+  public void setCategory(String category) {
+	this.category = category;
+  }
+
   @Override
   public String toString() {
 	return "PickOrder [pickId=" + pickId + ", pickRound=" + pickRound + ", pickTeam1=" + pickTeam1 + ", pickTeam2="
-			+ pickTeam2 + ", pickTeam3=" + pickTeam3 + ", pickTeam4=" + pickTeam4 + ", pickTeam5=" + pickTeam5 + "]";
+			+ pickTeam2 + ", pickTeam3=" + pickTeam3 + ", pickTeam4=" + pickTeam4 + ", pickTeam5=" + pickTeam5
+			+ ", category=" + category + "]";
   }
 
 }

@@ -146,9 +146,8 @@ public Player(int playerId, String full_name, int teamId, int soldForPoints, Str
 	this.soldOrUnsold = soldOrUnsold;
 }
 
-public Player(int playerId, String playerNumber, String full_name, String ticker_name, String category,String nationality,
-		String photoName, int teamId, int soldForPoints, String soldOrUnsold, String draft,String baseprice, String pair, String gender, String playersId, String draftType, String categoryType,
-		String members, String development) {
+public Player(int playerId, String playerNumber, String full_name, String ticker_name, String category,String nationality, String photoName, int teamId, int soldForPoints, 
+		String soldOrUnsold, String draft,String baseprice, String pair, String gender, String playersId, String draftType, String categoryType, String members, String development) {
 	super();
 	this.playerId = playerId;
 	this.playersId = playersId;

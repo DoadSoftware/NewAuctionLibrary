@@ -24,6 +24,7 @@ public class Auction {
   
 	private String currentRound = "";
 	private String currentCategory = "";
+	private String currentTeamPick = "";
   
 public List<Team> getTeam() {
 	return team;
@@ -104,6 +105,14 @@ public String getCurrentCategory() {
 
 public void setCurrentCategory(String currentCategory) {
 	this.currentCategory = currentCategory;
+}
+
+public String getCurrentTeamPick() {
+	return currentTeamPick;
+}
+
+public void setCurrentTeamPick(String currentTeamPick) {
+	this.currentTeamPick = currentTeamPick;
 }
 
 

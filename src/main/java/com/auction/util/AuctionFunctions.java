@@ -48,68 +48,70 @@ public class AuctionFunctions {
 		}
 		return auction;
 	}
+
+
 	public static List<String> getSquadDataInZone(Auction match, int team_id, String broadcaster) {
+
 	    List<String> zone_data = new ArrayList<>();
-	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>(); // Preserves order of insertion
-	    System.out.println("Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-	 // Initialize quotas
-	    switch(broadcaster) {
-	    case "AFG_DRAFT":
-	    	System.out.println("ehlllll");
-	    	zoneQuotas.put("PLATINUM", 2);
-		    zoneQuotas.put("DIAMOND", 2);
-		    zoneQuotas.put("GOLD", 5);
-		    zoneQuotas.put("SILVER", 5);
-		    zoneQuotas.put("EMERGING", 3);
-		    zoneQuotas.put("SUPPLEMENTARY", 2);
-		    zoneQuotas.put("ZONE", 0);
-	    	break;
-	    default:
-	    	zoneQuotas.put("NZ", 2);
-		    zoneQuotas.put("CZ", 2);
-		    zoneQuotas.put("EZ", 2);
-		    zoneQuotas.put("WZ", 2);
-		    zoneQuotas.put("SZ", 2);
-		    zoneQuotas.put("U19", 2);
-		    zoneQuotas.put("ZONE", 6);
-	    	break;
+	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>();
+	
+	    switch (broadcaster) {
+	        case "AFG_DRAFT":
+	            zoneQuotas.put("PLATINUM", 2);
+	            zoneQuotas.put("DIAMOND", 2);
+	            zoneQuotas.put("GOLD", 5);
+	            zoneQuotas.put("SILVER", 5);
+	            zoneQuotas.put("EMERGING", 3);
+	            zoneQuotas.put("SUPPLEMENTARY", 2);
+	            zoneQuotas.put("ZONE", 0);
+	            break;
+	        default:
+	            zoneQuotas.put("NZ", 2);
+	            zoneQuotas.put("CZ", 2);
+	            zoneQuotas.put("EZ", 2);
+	            zoneQuotas.put("WZ", 2);
+	            zoneQuotas.put("SZ", 2);
+	            zoneQuotas.put("U19", 2);
+	            zoneQuotas.put("ZONE", 6);
+	            break;
 	    }
-	    
-	    // Process players in the match for the given team ID
+	
 	    if (match.getPlayers() != null) {
 	        for (Player player : match.getPlayers()) {
 	            if (player.getTeamId() == team_id) {
 	                zone_data.add(String.valueOf(player.getPlayerId()));
-	                for(Player plyr : match.getPlayersList()) {
-	                	if(plyr.getPlayerId() == player.getPlayerId()) {
-	                		 // Get the corresponding zone key for the player's category
-	                        String categoryKey = getZoneKey(plyr.getCategory());
-	                        if (categoryKey != null) {
-	                            // Decrement quota if available, or fallback to "ZONE"
-	                            if (zoneQuotas.get(categoryKey) > 0) {
-	                                zoneQuotas.put(categoryKey, zoneQuotas.get(categoryKey) - 1);
-	                            } else if (zoneQuotas.get("ZONE") > 0) {
-	                                zoneQuotas.put("ZONE", zoneQuotas.get("ZONE") - 1);
+	                if (match.getPlayersList() != null) {
+	                    for (Player plyr : match.getPlayersList()) {
+	                        if (plyr.getPlayerId() == player.getPlayerId()) {
+	                            String categoryKey = plyr.getCategory() != null
+	                                    ? plyr.getCategory().trim().toUpperCase() : null;
+	                        
+	                            if (categoryKey != null && zoneQuotas.containsKey(categoryKey)) {
+	                                int remaining = zoneQuotas.get(categoryKey);
+	                                if (remaining > 0) {
+	                                    zoneQuotas.put(categoryKey, remaining - 1);
+	                                } else if (zoneQuotas.get("ZONE") > 0) {
+	                                    zoneQuotas.put("ZONE", zoneQuotas.get("ZONE") - 1);
+	                                }
 	                            }
+	                            break;
 	                        }
-	    	                break;
-	                	}
+	                    }
 	                }
 	            }
 	        }
 	    }
-
-	 // Add remaining quotas as placeholders in the list
+	
 	    for (Map.Entry<String, Integer> entry : zoneQuotas.entrySet()) {
 	        String zone = entry.getKey();
 	        int count = entry.getValue();
 	        for (int i = 0; i < count; i++) {
-	        	zone_data.add(zone);
+	            zone_data.add(zone);
 	        }
 	    }
-
 	    return zone_data;
 	}
+
 	public static List<String> getILTSquadDataInZone(Auction match, int team_id) {
 	    List<String> zone_data = new ArrayList<>();
 	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>(); // Preserves order of insertion

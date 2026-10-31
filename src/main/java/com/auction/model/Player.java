@@ -104,6 +104,9 @@ public class Player
   
   @Column(name = "PlayerApiID")
   private int playerApiID;
+  
+  @Column(name = "InDraft")
+  private String inDraft;
 
 @Transient
   private int teamId;
@@ -448,6 +451,14 @@ public String getMembers() {
 
 public void setMembers(String members) {
 	this.members = members;
+}
+
+public String getInDraft() {
+	return inDraft;
+}
+
+public void setInDraft(String inDraft) {
+	this.inDraft = inDraft;
 }
 
 public String getDevelopment() {

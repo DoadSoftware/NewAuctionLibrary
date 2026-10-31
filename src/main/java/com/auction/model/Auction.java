@@ -23,6 +23,7 @@ public class Auction {
   private boolean pickActive;
   
 	private String currentRound = "";
+	private String currentCategory = "";
   
 public List<Team> getTeam() {
 	return team;
@@ -96,5 +97,14 @@ public String getCurrentRound() {
 public void setCurrentRound(String currentRound) {
 	this.currentRound = currentRound;
 }
+
+public String getCurrentCategory() {
+	return currentCategory;
+}
+
+public void setCurrentCategory(String currentCategory) {
+	this.currentCategory = currentCategory;
+}
+
 
 }

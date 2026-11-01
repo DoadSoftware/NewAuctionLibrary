@@ -799,8 +799,61 @@ public class AuctionFunctions {
 			                        (e1, e2) -> e1, LinkedHashMap::new));
 			        tms.setCategory(sortedCategoryMap);
 			    }
-
 			    break;
+			case "AFG_DRAFT":
+				if(ply != null) {
+					for(Player plyer : ply) {
+						for(PlayerCount tms: player) {
+							if(plyer.getTeamId()== tms.getTeamId()) {
+								Player plyers = PlayerDb.stream().filter(pl->pl.getPlayerId()== plyer.getPlayerId()).findAny().orElse(null);
+
+								if (plyers == null) {
+								    continue;
+								}
+								//Total Squad Size
+								tms.setPlayers(tms.getPlayers()+1);
+								if(plyers!= null) {
+									
+									plyers.setSoldOrUnsold(plyer.getSoldOrUnsold());
+									plyers.setSoldForPoints(plyer.getSoldForPoints());
+									plyers.setTeamId(plyer.getTeamId());
+									
+									//player's in a team
+									tms.getPlayer().add(plyers);
+									
+									//Category
+									if(plyers.getCategory()!= null) {
+										//Total player in a category
+	                                    tms.getCategory().put(plyer.getCategory().trim().toUpperCase(), tms.getCategory()
+	                                    		.getOrDefault(plyer.getCategory().trim().toUpperCase(), 0) + 1); //Add player category wise
+	                                    tms.getPlayerCategoryWise().computeIfAbsent(plyer.getCategory().trim().toUpperCase(), k -> new ArrayList<>()).add(plyer);
+									}
+								}
+							}
+						}
+					}
+				}
+				// Dynamically gather all unique categories from PlayerDb
+			    Set<String> allCategoriesList = PlayerDb.stream().map(Player::getCategory)
+			            .filter(Objects::nonNull).map(String::trim).map(String::toUpperCase)
+			            .collect(Collectors.toSet());
+
+			    // Ensure every team has all categories, even if zero players
+			    for (PlayerCount tms : player) {
+			        for (String category : allCategoriesList) {
+			            tms.getCategory().putIfAbsent(category, 0);
+			            tms.getPlayerCategoryWise().computeIfAbsent(category, k -> new ArrayList<>());
+			        }
+			    }
+			    for (PlayerCount tms : player) {
+			    	 Map<String, Integer> sortedCategoryMap = tms.getCategory().entrySet().stream()
+				    	    .sorted(Comparator.comparingInt(e -> e.getKey().length()))
+				    	    .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,
+				    	        (e1, e2) -> e1,LinkedHashMap::new));
+
+				    	tms.setCategory(sortedCategoryMap); // Assuming setter exists	
+			    }
+				break;
 			default:
 				if(ply != null) {
 					for(Player plyer : ply) {

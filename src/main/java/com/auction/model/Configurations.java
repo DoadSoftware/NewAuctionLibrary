@@ -32,6 +32,12 @@ public class Configurations {
 	
 	@XmlElement(name="secondaryportNumber")
 	private int secondaryportNumber;
+	
+	@XmlElement(name="tertiaryipAddress")
+	private String tertiaryipAddress;
+	
+	@XmlElement(name="tertiaryportNumber")
+	private int tertiaryportNumber;
 
 	public Configurations(String filename, String broadcaster, 
 			String sponsor, String ipAddress, int portNumber, String vizscene) {
@@ -52,6 +58,18 @@ public class Configurations {
 		this.portNumber = portNumber;
 		this.secondaryipAddress = secondaryipAddress;
 		this.secondaryportNumber = secondaryportNumber;
+	}
+	
+	public Configurations(String broadcaster, String ipAddress, int portNumber, String secondaryipAddress,
+			int secondaryportNumber, String tertiaryipAddress, int tertiaryportNumber) {
+		super();
+		this.broadcaster = broadcaster;
+		this.ipAddress = ipAddress;
+		this.portNumber = portNumber;
+		this.secondaryipAddress = secondaryipAddress;
+		this.secondaryportNumber = secondaryportNumber;
+		this.tertiaryipAddress = tertiaryipAddress;
+		this.tertiaryportNumber = tertiaryportNumber;
 	}
 
 	public Configurations() {
@@ -105,6 +123,22 @@ public class Configurations {
 	}
 	public void setSecondaryportNumber(int secondaryportNumber) {
 		this.secondaryportNumber = secondaryportNumber;
+	}
+
+	public String getTertiaryipAddress() {
+		return tertiaryipAddress;
+	}
+
+	public void setTertiaryipAddress(String tertiaryipAddress) {
+		this.tertiaryipAddress = tertiaryipAddress;
+	}
+
+	public int getTertiaryportNumber() {
+		return tertiaryportNumber;
+	}
+
+	public void setTertiaryportNumber(int tertiaryportNumber) {
+		this.tertiaryportNumber = tertiaryportNumber;
 	}
 	
 }

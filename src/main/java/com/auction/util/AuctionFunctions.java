@@ -50,31 +50,18 @@ public class AuctionFunctions {
 	}
 
 
-	public static List<String> getSquadDataInZone(Auction match, int team_id, String broadcaster) {
+	public static List<String> getSquadDataInZone(Auction match, int team_id) {
 
 	    List<String> zone_data = new ArrayList<>();
 	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>();
 	
-	    switch (broadcaster) {
-	        case "AFG_DRAFT": case "AFG_DRAFT_BIGSCREEN":
-	            zoneQuotas.put("PLATINUM", 2);
-	            zoneQuotas.put("DIAMOND", 2);
-	            zoneQuotas.put("GOLD", 5);
-	            zoneQuotas.put("SILVER", 5);
-	            zoneQuotas.put("EMERGING", 3);
-	            zoneQuotas.put("SUPPLEMENTARY", 2);
-	            zoneQuotas.put("ZONE", 0);
-	            break;
-	        default:
-	            zoneQuotas.put("NZ", 2);
-	            zoneQuotas.put("CZ", 2);
-	            zoneQuotas.put("EZ", 2);
-	            zoneQuotas.put("WZ", 2);
-	            zoneQuotas.put("SZ", 2);
-	            zoneQuotas.put("U19", 2);
-	            zoneQuotas.put("ZONE", 6);
-	            break;
-	    }
+	    zoneQuotas.put("NZ", 2);
+        zoneQuotas.put("CZ", 2);
+        zoneQuotas.put("EZ", 2);
+        zoneQuotas.put("WZ", 2);
+        zoneQuotas.put("SZ", 2);
+        zoneQuotas.put("U19", 2);
+        zoneQuotas.put("ZONE", 6);
 	
 	    if (match.getPlayers() != null) {
 	        for (Player player : match.getPlayers()) {
@@ -98,6 +85,52 @@ public class AuctionFunctions {
 	                        }
 	                    }
 	                }
+	            }
+	        }
+	    }
+	
+	    for (Map.Entry<String, Integer> entry : zoneQuotas.entrySet()) {
+	        String zone = entry.getKey();
+	        int count = entry.getValue();
+	        for (int i = 0; i < count; i++) {
+	            zone_data.add(zone);
+	        }
+	    }
+	    return zone_data;
+	}
+	
+	public static List<String> getSquadDataInZone(Auction match, int team_id, String broadcaster) {
+
+	    List<String> zone_data = new ArrayList<>();
+	    Map<String, Integer> zoneQuotas = new LinkedHashMap<>();
+	
+	    switch (broadcaster) {
+	        case "AFG_DRAFT": case "AFG_DRAFT_BIGSCREEN":
+	            zoneQuotas.put("PLATINUM", 2);
+	            zoneQuotas.put("DIAMOND", 2);
+	            zoneQuotas.put("GOLD", 5);
+	            zoneQuotas.put("SILVER", 5);
+	            zoneQuotas.put("EMERGING", 3);
+	            zoneQuotas.put("SUPPLEMENTARY", 2);
+	            zoneQuotas.put("ZONE", 0);
+	            break;
+	    }
+	
+	    if (match.getPlayers() != null) {
+	        for (Player player : match.getPlayers()) {
+	            if (player.getTeamId() == team_id) {
+	                zone_data.add(String.valueOf(player.getPlayerId()));
+	                String categoryKey = player.getCategory() != null
+                            ? player.getCategory().trim().toUpperCase() : null;
+                
+                    if (categoryKey != null && zoneQuotas.containsKey(categoryKey)) {
+                        int remaining = zoneQuotas.get(categoryKey);
+                        if (remaining > 0) {
+                            zoneQuotas.put(categoryKey, remaining - 1);
+                        } else if (zoneQuotas.get("ZONE") > 0) {
+                            zoneQuotas.put("ZONE", zoneQuotas.get("ZONE") - 1);
+                        }
+                    }
 	            }
 	        }
 	    }

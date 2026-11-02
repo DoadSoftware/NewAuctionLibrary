@@ -107,6 +107,9 @@ public class Player
   
   @Column(name = "InDraft")
   private String inDraft;
+  
+  @Column(name = "RelligationCategory")
+  private String relligationCategory;
 
 @Transient
   private int teamId;
@@ -474,6 +477,14 @@ public int getPlayerApiID() {
 
 public void setPlayerApiID(int playerApiID) {
 	this.playerApiID = playerApiID;
+}
+
+public String getRelligationCategory() {
+	return relligationCategory;
+}
+
+public void setRelligationCategory(String relligationCategory) {
+	this.relligationCategory = relligationCategory;
 }
 
 @Override
